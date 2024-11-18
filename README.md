@@ -24,6 +24,7 @@ If you have any questions about this work, please feel free to [start a new issu
 
 <!-- omit in toc -->
 # News
+- [Nov. 18th] We updated the codebase of StableV2V.
 - [Nov. 17th] We updated our [project page](https://alonzoleeeooo.github.io/StableV2V/).
 
 <!-- omit in toc -->
