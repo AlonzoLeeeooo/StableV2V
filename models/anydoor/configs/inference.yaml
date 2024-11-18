@@ -1,0 +1,3 @@
+pretrained_model: /Users/liuchang/Desktop/Workspaces/checkpoints/anydoor/epoch=1-step=8687.ckpt
+config_file: /Users/liuchang/Desktop/Workspaces/code/shape-consistent-video-editing/iterative-warping/models/anydoor/configs/anydoor.yaml
+save_memory: False
