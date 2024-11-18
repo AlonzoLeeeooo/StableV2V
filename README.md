@@ -33,6 +33,7 @@ If you have any questions about this work, please feel free to [start a new issu
 - [x] Update the codebase of `StableV2V`
 - [ ] Upload all required model weights of `StableV2V` to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V)
 - [ ] Upload the curated testing benchmark `DAVIS-Edit` to our [HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
+- [ ] Update a Gradio demo
 - Regular Maintainence
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
@@ -176,10 +177,97 @@ python inference.py --raft-checkpoint-path checkpoints/raft-things.pth --midas-c
 > 2. If you are using `Paint-by-Example`, `InstructPix2Pix`, `AnyDoor`, you are required to configure the `--external-guidance` argument, which corresponds to reference image and user instruction accordingly.
 > 3. Our method does not currently support `xformers`, which might cause artifacts in the produced results. Such issue might be fixed in the future if possible.
 
+## Performing Sketch-based Editing with `StableV2V`
+<details> <summary> So far, we have not found an efficient way to perform the sketch-based editing within one command line, thus we showcase our way in doing so for reference, where the procedures are shown below. </summary>
+
+
+### 1. Prepare the Hand-drawn Sketches through External Devices
+To obtain the human-drawn sketches, you need to manually draw them on external devices such as a tablet, and then export the result for later uses.
+Particularly, we obtain the hand-drawn sketches on the iPad application `Sketchbook`. An example hand-drawn sketch might look like this:
+
+<div align="center">
+  <img src="assets/bear-input-frame.png" width="400"/>
+  <img src="assets/bear-elephant-sketch.png" width="400"/>
+</div>
+
+### 2. Use `ControlNet (scribble)` to Generate the First Edited Frame
+Once you obtain the hand-drawn sketch, the next step is to get the first edited frame.
+In doing so, we use `ControlNet (scribble)`, where you need to prepare the model weights of [`ControlNet (scribble)`](https://huggingface.co/lllyasviel/control_v11p_sd15_scribble) and [`SD Inpaint`](https://huggingface.co/botp/stable-diffusion-v1-5-inpainting) in advance.
+Suppose we put the previously hand-drawn sketches at `inputs/hand-drawn-sketches`, you can execute the following command line by running `ControlNet (scribble)`:
+```bash
+python scripts/inference_controlnet_inpaint.py --controlnet-checkpoint-path lllyasviel/control_v11p_sd15_scribble --stable-diffusion-checkpoint-path botp/stable-diffusion-v1-5-inpainting --prompt "an elephant" --input-mask inputs/masks/bear.png --controlnet-guidance inputs/hand-drawn-sketches/bear-elephant-sketch.png --outdir results/sketch-guided-result.png
+```
+The result might seem like:
+<div align="center">
+  <img src="assets/bear-elephant-edited-first-frame.png" width="400"/>
+</div>
+
+
+### 3. Use the First Edited Frame to Generate the Edited Video
+Finally, you are ready to generate the entire edited video. We offer an example command line as follows:
+```bash
+python inference.py --raft-checkpoint-path checkpoints/raft-things.pth --midas-checkpoint-path checkpoints/dpt_swin2_large_384.pt --u2net-checkpoint-path checkpoints/u2net.pth  --stable-diffusion-checkpoint-path stable-diffusion-v1-5/stable-diffusion-v1-5 --controlnet-checkpoint-path lllyasviel/control_v11f1p_sd15_depth --i2vgenxl-checkpoint-path ali-vilab/i2vgen-xl --ctrl-adapter-checkpoint-path hanlincs/Ctrl-Adapter --completion-net-checkpoint-path checkpoints/depth-refinement/50000.ckpt --source-video-frames examples/frames/bear --edited-first-frame inputs/edited-first-frames/bear-elephant.png --prompt "an elephant walking on the rocks in a zoo" --outdir results 
+```
+By configuring the `--edited-first-frame`, the codebase will automatically skip the first-frame editing process, where we visualize the source video and the edited video below:
+
+<div align="center">
+  <img width="400" src="assets/bear-elephant-source-video.gif"/>
+  <img width="400" src="assets/bear-elephant-edited-video.gif"/>
+</div>
+
+</details>
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 
+
+## Performing Video Inpainting with `StableV2V`
+<details> <summary> The application of video inpainting has similar problem to that of sketch-based editing, we have not found integrated solution so far. Thus, we showcase how we perform such application in the following contents for potential reference. </summary>
+
+### 1. (Optional) Dilate the Input Mask
+Before you inpaint the first video frame, we recommend you dilate the annotated segmentation mask (if any) using the following script:
+```
+python scripts/run_dilate_mask.py --input-folder inputs/masks/car-turn.png --output-folder inputs/dilated-masks --kernel-size 15 --iterations 1
+```
+The original (left) and dilated (right) masks might look like:
+<div align="center">
+  <img src="inputs/masks/car-turn.png" width="400"/>
+  <img src="inputs/dilated-masks/car-turn.png" width="400"/>
+</div>
+
+### 2. Use `IOPaint` to Generated the First Inpainted Frame
+We recommend you to use the library `IOPaint` for convenient use. To install it, you can simply run:
+```bash
+pip install iopaint
+```
+Then, you are able to execute `LaMa` through the library:
+```
+iopaint run --model=lama --image inputs/frames/car-turn/00000.jpg --mask inputs/dilated-masks/car-turn.png --output inputs/edited-first-frames/
+```
+The original and inpainted first frames might look like:
+
+
+<div align="center">
+  <img src="assets/car-turn-frame.jpg" width="400"/>
+  <img src="assets/car-turn-inpainted.png" width="400"/>
+</div>
+
+
+### 3. Use the First Edited Frame to Generate the Edited Video
+Finally, you are ready to generate the entire edited video. We offer an example command line as follows:
+```bash
+python inference.py --raft-checkpoint-path checkpoints/raft-things.pth --midas-checkpoint-path checkpoints/dpt_swin2_large_384.pt --u2net-checkpoint-path checkpoints/u2net.pth  --stable-diffusion-checkpoint-path stable-diffusion-v1-5/stable-diffusion-v1-5 --controlnet-checkpoint-path lllyasviel/control_v11f1p_sd15_depth --i2vgenxl-checkpoint-path ali-vilab/i2vgen-xl --ctrl-adapter-checkpoint-path hanlincs/Ctrl-Adapter --completion-net-checkpoint-path checkpoints/depth-refinement/50000.ckpt --source-video-frames examples/frames/car-turn --edited-first-frame inputs/edited-first-frame/car-turn-inpainted.png --prompt "an elephant walking on the rocks in a zoo" --outdir results 
+```
+By configuring the `--edited-first-frame`, the codebase will automatically skip the first-frame editing process, where we visualize the source video and the edited video below:
+
+<div align="center">
+  <img width="400" src="assets/car-turn-source-video.gif"/>
+  <img width="400" src="assets/car-turn-edited-video.gif"/>
+</div>
+
+</details>
+
+[<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 
 
