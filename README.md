@@ -99,7 +99,7 @@ Before that, you may refer to the official links in the following table. </summa
 |RAFT|ISA|[`Google Drive`](https://drive.google.com/drive/folders/1sWDsfuZ3Up38EUQt7-JDTT1HcGHuJgvT)|
 |MiDaS|ISA|[`Link`](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_large_384.pt)|
 |U2-Net|ISA|[`Link`](https://huggingface.co/AlonzoLeeeooo/LaCon/resolve/main/data-preprocessing/u2net.pth)|
-|Depth Refinement Network|ISA|[`Link`](https://huggingface.co/AlonzoLeeeooo/StableV2V)|
+|Depth Refinement Network|ISA|[`Link`](https://huggingface.co/AlonzoLeeeooo/StableV2V/resolve/main/50000.ckpt)|
 |SD v1.5|CIG|[`stable-diffusion-v1-5/stable-diffusion-v1-5`](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/)|
 |ControlNet (depth)|CIG|[`lllyasviel/control_v11f1p_sd15_depth`](https://huggingface.co/lllyasviel/control_v11f1p_sd15_depth)|
 |Ctrl-Adapter|CIG|[`hanlincs/Ctrl-Adapter`](https://huggingface.co/hanlincs/Ctrl-Adapter) (`i2vgenxl_depth`)|
