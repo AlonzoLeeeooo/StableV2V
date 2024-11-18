@@ -8,7 +8,7 @@ import argparse
 import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
-from runners.completion_net_train_runner import flow_completion_net_train_runner, depth_completion_net_train_runner
+from runners.completion_net_train_runner import depth_completion_net_train_runner
 
 DEFAULT_NEGATIVE_PROMPTS = "Distorted, discontinuous, Ugly, blurry, low resolution, motionless, static, disfigured, disconnected limbs, Ugly faces, incomplete arms"
 
@@ -41,9 +41,7 @@ def parse_args():
     parser.add_argument("--video-path", type=str, default='', help="Path of videos")
     parser.add_argument("--shape-path", type=str, default='', help="Path of first frames' shapes")
     parser.add_argument("--depth-path", type=str, default='', help="Path of pre-extracted depth maps")
-    parser.add_argument("--flow-path", type=str, default='', help="Path of pre-extracted optical flows")
     parser.add_argument("--annotation-path", type=str, default='', help="Path of the annotation file")
-    parser.add_argument("--n-sample-frames", type=int, default=16, help="Number of sampled video frames")
     parser.add_argument("--output-fps", type=int, default=3)
     parser.add_argument("--width", type=int, default=384)
     parser.add_argument("--height", type=int, default=384)
@@ -60,15 +58,15 @@ def parse_args():
 
     
     # Training configurations
+    parser.add_argument("--outdir", type=str, default='outputs/training/flow_completion_net', help='Output directory')
+    parser.add_argument("--batch-size", type=int, default=8, help="Batch size")
+    parser.add_argument("--epochs", type=int, default=100, help="Training epochs")
+    parser.add_argument("--max-train-steps", type=int, default=50000, help="Training steps")
     parser.add_argument("--raft-checkpoint-path", type=str, default='', help='Local path of RAFT')
     parser.add_argument("--depth-estimator-checkpoint-path", type=str, default='', help="Local path of MiDas")
     parser.add_argument("--seed", type=int, default=23, help="Random seed")
     parser.add_argument("--master-port", type=str, default=str(2333), help="Master port for DDP")
     parser.add_argument("--dtype", type=str, default='fp32', help="Data dtype")
-    parser.add_argument("--max-train-steps", type=int, default=9999999, help="Training steps")
-    parser.add_argument("--epochs", type=int, default=100, help="Training epochs")
-    parser.add_argument("--outdir", type=str, default='outputs/training/flow_completion_net', help='Output directory')
-    parser.add_argument("--batch-size", type=int, default=8, help="Batch size")
     parser.add_argument("--num-workers", type=int, default=0, help="Number of dataloader workers")
     parser.add_argument("--lr-scheduler", type=str, default='MultiStepLR', help="Type of learning-rate scheduler")
     parser.add_argument("--milestones", type=list, default=[300e3, 400e3, 500e3, 600e3], help="Milestone step to adjust the learning rate")

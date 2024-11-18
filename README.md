@@ -17,7 +17,8 @@ Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 - [<u>6. Inference of StableV2V</u>](#inference-of-stablev2v)
 - [<u>7. Training the Shape-guided Depth Refinement Network</u>](#training-of-the-shape-guided-depth-refinement-network)
 - [<u>8. Citation</u>](#citation)
-- [<u>9. Star History</u>](#star-history)
+- [<u>9. Results</u>](#results)
+- [<u>10. Star History</u>](#star-history)
 
 If you have any questions about this work, please feel free to [start a new issue](https://github.com/AlonzoLeeeooo/StableV2V/issues/new) or [propose a PR](https://github.com/AlonzoLeeeooo/StableV2V/pulls).
 
@@ -30,8 +31,8 @@ If you have any questions about this work, please feel free to [start a new issu
 <!-- omit in toc -->
 # To-Do List
 - [x] Update the codebase of `StableV2V`
-- [ ] Upload the required model weights of `StableV2V`
-- [ ] Upload the curated testing benchmark `DAVIS-Edit`
+- [ ] Upload all required model weights of `StableV2V` to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V)
+- [ ] Upload the curated testing benchmark `DAVIS-Edit` to our [HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
 - Regular Maintainence
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
@@ -85,9 +86,8 @@ pip install -r requirements.txt
 ## 2. Pre-trained Model Weights
 Before you start the inference process, you need to prepare the model weights that `StableV2V` requires.
 
-> [!NOTE]
-> Currently, we are uploading the pre-trained model weights to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V), so that users can get access to all weights in the same repo.
-> Before that, you may refer to the official links in the following table:
+<details>  <summary> ⚠️ Currently, we are uploading the pre-trained model weights to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V), so that users can get access to all weights in the same repo.
+Before that, you may refer to the official links in the following table. </summary>
 
 |Model|Component|Link|
 |-|-|-|
@@ -104,6 +104,8 @@ Before you start the inference process, you need to prepare the model weights th
 |ControlNet (depth)|CIG|[`lllyasviel/control_v11f1p_sd15_depth`](https://huggingface.co/lllyasviel/control_v11f1p_sd15_depth)|
 |Ctrl-Adapter|CIG|[`hanlincs/Ctrl-Adapter`](https://huggingface.co/hanlincs/Ctrl-Adapter) (`i2vgenxl_depth`)|
 |I2VGen-XL|CIG|[`ali-vilab/i2vgen-xl`](https://huggingface.co/ali-vilab/i2vgen-xl)|
+
+</details>
 
 Once you downloaded all the model weights, put them in the `checkpoints` folder.
 
@@ -133,7 +135,9 @@ You may refer to the following command line to run `StableV2V`:
 python inference.py --raft-checkpoint-path checkpoints/raft-things.pth --midas-checkpoint-path checkpoints/dpt_swin2_large_384.pt --u2net-checkpoint-path checkpoints/u2net.pth  --stable-diffusion-checkpoint-path stable-diffusion-v1-5/stable-diffusion-v1-5 --controlnet-checkpoint-path lllyasviel/control_v11f1p_sd15_depth --i2vgenxl-checkpoint-path ali-vilab/i2vgen-xl --ctrl-adapter-checkpoint-path hanlincs/Ctrl-Adapter --completion-net-checkpoint-path checkpoints/depth-refinement/50000.ckpt --image-editor-type paint-by-example --image-editor-checkpoint-path /path/to/image/editor --source-video-frames examples/frames/bear --external-guidance examples/reference-images/raccoon.jpg --prompt "a raccoon" --outdir results
 ```
 
-For detailed illustrations of the arguments, please refer to the table below:
+
+<details><summary> For detailed illustrations of the arguments, please refer to the table below. </summary>
+
 |Argument|Default Setting|Required or Not|Explanation|
 |-|-|-|-|
 |Model arguments|-|-|-|
@@ -163,6 +167,7 @@ For detailed illustrations of the arguments, please refer to the table below:
 |`--mixed-precision`|bf16|No|Precision of models in StableV2V.|
 |`--n-sample-frames`|16|No|Number of video frames of the edited video.|
 |`--seed`|42|No|Random seed.|
+</details>
 
 > [!NOTE]
 > Some specific points that you may pay additional attentions to while inferencing:
@@ -180,11 +185,51 @@ For detailed illustrations of the arguments, please refer to the table below:
 
 <!-- omit in toc -->
 # Training of the Shape-guided Depth Refinement Network
-We will update the instructions of shape-guided depth refinement network soon.
+## 1. Download the `YouTube-VOS` Dataset
+We use `YouTube-VOS` to conduct the training process of our shape-guided depth refinement network.
+Before you start the training process, you need to first download its source videos and annotations from [this link](https://codalab.lisn.upsaclay.fr/competitions/6066#participate-get_data).
+Once downloaded, the data follows the structures below:
+```
+youtube-vos
+├── JPEGImages                     <----- Path of source video frames
+├── Annotations                    <----- Path of segmentation masks
+└── meta.json                      <----- Annotation file for the segmentation masks
+```
+
+## 2. Use `MiDaS` to Annotate the Depth Maps
+Once the video frames are ready, the next step is to annotate their corresponding depth maps.
+Specifically, make sure you download the `MiDaS` model weights from [this link](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_large_384.pt).
+Then, you can execute the following command lines with our automatic script:
+```bash
+python scripts/extract_youtube_vos_depths.py --midas-path checkpoints/dpt_swin2_large_384.pt --dataset-path data/youtube-vos/JPEGImages --outdir data/youtube-vos/DepthMaps
+```
+
+## 3. Use `U2-Net` to Annotate the First-frame Shape Masks
+Our depth refinement network uses an additional network channel to take the first-frame shape mask as guidance, thus you need to annotate them for the `YouTube-VOS` dataset.
+First, make sure you download the `U2-Net` model weights from [this link](https://huggingface.co/AlonzoLeeeooo/LaCon/resolve/main/data-preprocessing/u2net.pth).
+Then, you execute the following command lines with our automatic script:
+```bash
+python scripts/extract_youtube_vos_shapes.py --video-root data/youtube-vos/JPEGImages --model-dir checkpoints/u2net.pth --outdir data/youtube-vos/FirstFrameMasks
+```
+
+
+## 4. Train the Model
+Finally, you are ready to execute the training process with the following command line:
+```bash
+python train_completion_net.py --video-path data/youtube-vos/JPEGImages --shape-path data/youtube-vos/FirstFrameMasks --max-train-steps 50000 --outdir results/shape-guided-depth-refinement --checkpoint-freq 2000 --validation-freq 200
+```
+
+The trained model weights will be saved at `results/checkpoints`, and the visualizations of intermediate results can be checked via `tensorboard`, with the logs saved at `results/tensorboard`.
 
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
+
+<!-- omit in toc -->
+# Results
+
+
+[<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 
 <!-- omit in toc -->
