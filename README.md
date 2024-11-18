@@ -87,7 +87,7 @@ pip install -r requirements.txt
 ## 2. Pre-trained Model Weights
 Before you start the inference process, you need to prepare the model weights that `StableV2V` requires.
 
-<details>  <summary> ⚠️ Currently, we are uploading the pre-trained model weights to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V), so that users can get access to all weights in the same repo.
+<details>  <summary> Currently, we are uploading the pre-trained model weights to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V), so that users can get access to all weights in the same repo.
 Before that, you may refer to the official links in the following table. </summary>
 
 |Model|Component|Link|
