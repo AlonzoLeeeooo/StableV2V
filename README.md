@@ -276,10 +276,10 @@ By configuring the `--edited-first-frame`, the codebase will automatically skip 
 
 
 <!-- omit in toc -->
-## Details of `DAVIS-Edit`
+# Details of `DAVIS-Edit`
 <details> <summary> We illustrate more details of the curated testing benchmark `DAVIS-Edit` below, where you can get access to the dataset in our HuggingFace repo. </summary>
 
-### Data Structure
+## Data Structure
 We construct `DAVIS-Edit` following the same data structure as the one of [`DAVIS`](https://davischallenge.org/), as is shown below:
 ```
 DAVIS-Edit
@@ -311,11 +311,12 @@ Specifically, `edited_video_caption_dict_image.json` and `edited_video_caption_d
     "similar": "A panda walking on rocks in a zoo",
     "changing": "A rabbit walking on rocks in a zoo"
   },
-...
+# ...
+}
 ```
 The annotations of reference images contain two sub-folders, i.e., `similar` and `changing`, corresponding to the annotations for `DAVIS-Edit-S` and `DAVIS-Edit-C`, respectively, where the structure are constructed in the same folder name as that in `JPEGImages`.
 
-# How to use DAVIS-Edit?
+## How to use DAVIS-Edit?
 We highly recommend you to index different elements in `DAVIS-Edit` through the *annotation files*. Particularly, you may refer to the script below:
 ```python
 import os
