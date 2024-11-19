@@ -4,7 +4,7 @@
 
 Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 
-[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Huggingface`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`Dataset`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
+[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Huggingface`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`DAVIS-Edit`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
 </div>
 
 <!-- omit in toc -->
