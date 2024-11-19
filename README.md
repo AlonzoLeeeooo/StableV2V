@@ -15,17 +15,20 @@ Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 - [<u>4. Code Structure</u>](#code-structure)
 - [<u>5. Prerequisites</u>](#prerequisites)
 - [<u>6. Inference of StableV2V</u>](#inference-of-stablev2v)
-- [<u>7. Training the Shape-guided Depth Refinement Network</u>](#training-of-the-shape-guided-depth-refinement-network)
-- [<u>8. Citation</u>](#citation)
-- [<u>9. Results</u>](#results)
-- [<u>10. Star History</u>](#star-history)
+  - [<u>6.1. Sketch-based Editing with `StableV2V`</u>](#performing-sketch-based-editing-with-stablev2v)
+  - [<u>6.2. Video Inpainting with `StableV2V`</u>](#performing-video-inpainting-with-stablev2v)
+- [<u>7. Details of `DAVIS-Edit`</u>](#details-of-davis-edit)
+- [<u>8. Training the Shape-guided Depth Refinement Network</u>](#training-of-the-shape-guided-depth-refinement-network)
+- [<u>9. Citation</u>](#citation)
+- [<u>10. Results</u>](#results)
+- [<u>11. Star History</u>](#star-history)
 
 If you have any questions about this work, please feel free to [start a new issue](https://github.com/AlonzoLeeeooo/StableV2V/issues/new) or [propose a PR](https://github.com/AlonzoLeeeooo/StableV2V/pulls).
 
 
 <!-- omit in toc -->
 # News
-- [Nov. 19th] We have updated `DAVIS-Edit` to [our HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit).
+- [Nov. 19th] We have updated `DAVIS-Edit` to [our HuggingFace dataset repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit), and uploaded all the required model weights of `StableV2V` to [our HuggingFace model repo](https://huggingface.co/AlonzoLeeeooo/StableV2V).
 - [Nov. 19th] [Our arXiv paper](https://arxiv.org/abs/2411.11045) is currently released.
 - [Nov. 18th] We updated the codebase of StableV2V.
 - [Nov. 17th] We updated our [project page](https://alonzoleeeooo.github.io/StableV2V/).
@@ -34,7 +37,7 @@ If you have any questions about this work, please feel free to [start a new issu
 # To-Do List
 - [x] Update the codebase of `StableV2V`
 - [x] Upload the curated testing benchmark `DAVIS-Edit` to our [HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
-- [ ] Upload all required model weights of `StableV2V` to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V)
+- [x] Upload all required model weights of `StableV2V` to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V)
 - [ ] Update a Gradio demo
 - Regular Maintainence
 
@@ -89,8 +92,7 @@ pip install -r requirements.txt
 ## 2. Pre-trained Model Weights
 Before you start the inference process, you need to prepare the model weights that `StableV2V` requires.
 
-<details>  <summary> Currently, we are uploading the pre-trained model weights to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V), so that users can get access to all weights in the same repo.
-Before that, you may refer to the official links in the following table. </summary>
+<details>  <summary> We uploaded all model weights that `StableV2V` requires to our HuggingFace repo. Besides, you can also get access to them in their official releases, where we provide the corresponding details in the following table. </summary>
 
 |Model|Component|Link|
 |-|-|-|
@@ -179,6 +181,7 @@ python inference.py --raft-checkpoint-path checkpoints/raft-things.pth --midas-c
 > 2. If you are using `Paint-by-Example`, `InstructPix2Pix`, `AnyDoor`, you are required to configure the `--external-guidance` argument, which corresponds to reference image and user instruction accordingly.
 > 3. Our method does not currently support `xformers`, which might cause artifacts in the produced results. Such issue might be fixed in the future if possible.
 
+<!-- omit in toc -->
 ## Performing Sketch-based Editing with `StableV2V`
 <details> <summary> So far, we have not found an efficient way to perform the sketch-based editing within one command line, thus we showcase our way in doing so for reference, where the procedures are shown below. </summary>
 
@@ -222,7 +225,7 @@ By configuring the `--edited-first-frame`, the codebase will automatically skip 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 
-
+<!-- omit in toc -->
 ## Performing Video Inpainting with `StableV2V`
 <details> <summary> The application of video inpainting has similar problem to that of sketch-based editing, we have not found integrated solution so far. Thus, we showcase how we perform such application in the following contents for potential reference. </summary>
 
@@ -272,9 +275,98 @@ By configuring the `--edited-first-frame`, the codebase will automatically skip 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 
+<!-- omit in toc -->
+## Details of `DAVIS-Edit`
+<details> <summary> We illustrate more details of the curated testing benchmark `DAVIS-Edit` below, where you can get access to the dataset in our HuggingFace repo. </summary>
+
+### Data Structure
+We construct `DAVIS-Edit` following the same data structure as the one of [`DAVIS`](https://davischallenge.org/), as is shown below:
+```
+DAVIS-Edit
+├── Annotations                                 <----- Official annotated masks of DAVIS
+  ├── bear
+  ├── blackswan
+  ├── ...
+  └── train
+├── JPEGImages                                  <----- Official video frames of DAVIS
+  ├── bear
+  ├── blackswan
+  ├── ...
+  └── train
+  ├── ReferenceImages                           <----- Annotated reference images for image-based editing on DAVIS-Edit
+  ├── bear.png
+  ├── blackswan.png
+  ├── ...
+  └── train.png
+├── .gitattributes
+├── README.md
+├── edited_video_caption_dict_image.json        <----- Annotated text descriptions for image-based editing on DAVIS-Edit
+└── edited_video_caption_dict_text.json         <----- Annotated text descriptions for text-based editing on DAVIS-Edit
+```
+Specifically, `edited_video_caption_dict_image.json` and `edited_video_caption_dict_text.json` are constructed as Python dictionary, with its keys as the names of video folders in `JPEGImages`. For example in `edited_video_caption_dict_text.json`:
+```json
+{
+  "bear": {
+    "original": "a bear walking on rocks in a zoo",
+    "similar": "A panda walking on rocks in a zoo",
+    "changing": "A rabbit walking on rocks in a zoo"
+  },
+...
+```
+The annotations of reference images contain two sub-folders, i.e., `similar` and `changing`, corresponding to the annotations for `DAVIS-Edit-S` and `DAVIS-Edit-C`, respectively, where the structure are constructed in the same folder name as that in `JPEGImages`.
+
+# How to use DAVIS-Edit?
+We highly recommend you to index different elements in `DAVIS-Edit` through the *annotation files*. Particularly, you may refer to the script below:
+```python
+import os
+import json
+from tqdm import tqdm
+from PIL import Image
+
+# TODO: Modify the configurations here to your local paths
+frame_root = 'JPEGImages'
+mask_root = 'Annotations'
+reference_image_root = 'ReferenceImages/similar'            # Or 'ReferenceImages/changing'
+annotation_file_path = 'edited_video_caption_dict_text.json'
+
+# Load the annotation file
+with open(annotation_file_path, 'r') as f:
+  annotations = json.load(f)
+
+# Iterate all data samples in DAVIS-Edit
+for video_name in tqdm(annotations.keys()):
+
+  # Load text prompts
+  original_prompt = annotations[video_name]['original']
+  similar_prompt = annotations[video_name]['similar']
+  changing_prompt = annotations[video_name]['changing']
+
+  # Load reference images
+  reference_image = Image.open(os.path.join(reference_image_root, video_name + '.png'))
+
+  # Load video frames
+  video_frames = []
+  for path in sorted(os.listdir(os.path.join(frame_root, video_name))):
+    if path != 'Thumbs.db' and path != '.DS_store':
+      video_frames.append(Image.open(os.path.join(frame_root, path)))
+
+  # Load masks
+  masks = []
+  for path in sorted(os.listdir(os.path.join(mask_root, video_name))):
+    if path != 'Thumbs.db' and path != '.DS_store':
+      masks.append(Image.open(os.path.join(frame_root, path)))
+
+# (add further operations that you expect in the lines below)
+```
+
+</details>
+
+[<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 <!-- omit in toc -->
 # Training of the Shape-guided Depth Refinement Network
+<details> <summary> We have open-sourced the pre-trained model weights of the proposed shape-guided depth refinement network in our HuggingFace repo, where you are free to use `StableV2V` with it. Meanwhile, we offer the specific procedures to perform cutomized training for the refinement network, with details listed below.</summary>
+
 ## 1. Download the `YouTube-VOS` Dataset
 We use `YouTube-VOS` to conduct the training process of our shape-guided depth refinement network.
 Before you start the training process, you need to first download its source videos and annotations from [this link](https://codalab.lisn.upsaclay.fr/competitions/6066#participate-get_data).
@@ -311,6 +403,7 @@ python train_completion_net.py --video-path data/youtube-vos/JPEGImages --shape-
 
 The trained model weights will be saved at `results/checkpoints`, and the visualizations of intermediate results can be checked via `tensorboard`, with the logs saved at `results/tensorboard`.
 
+</details>
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
