@@ -25,6 +25,7 @@ If you have any questions about this work, please feel free to [start a new issu
 
 <!-- omit in toc -->
 # News
+- [Nov. 19th] We have updated `DAVIS-Edit` to [our HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit).
 - [Nov. 19th] [Our arXiv paper](https://arxiv.org/abs/2411.11045) is currently released.
 - [Nov. 18th] We updated the codebase of StableV2V.
 - [Nov. 17th] We updated our [project page](https://alonzoleeeooo.github.io/StableV2V/).
@@ -32,8 +33,8 @@ If you have any questions about this work, please feel free to [start a new issu
 <!-- omit in toc -->
 # To-Do List
 - [x] Update the codebase of `StableV2V`
+- [x] Upload the curated testing benchmark `DAVIS-Edit` to our [HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
 - [ ] Upload all required model weights of `StableV2V` to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V)
-- [ ] Upload the curated testing benchmark `DAVIS-Edit` to our [HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
 - [ ] Update a Gradio demo
 - Regular Maintainence
 
