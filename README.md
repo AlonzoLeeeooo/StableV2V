@@ -4,7 +4,7 @@
 
 Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 
-[[`Paper`]]() / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Huggingface`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`Dataset`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
+[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Huggingface`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`Dataset`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
 </div>
 
 <!-- omit in toc -->
@@ -25,6 +25,7 @@ If you have any questions about this work, please feel free to [start a new issu
 
 <!-- omit in toc -->
 # News
+- [Nov. 19th] [Our arXiv paper](https://arxiv.org/abs/2411.11045) is currently released.
 - [Nov. 18th] We updated the codebase of StableV2V.
 - [Nov. 17th] We updated our [project page](https://alonzoleeeooo.github.io/StableV2V/).
 
@@ -322,7 +323,17 @@ Please refer to our [project page](https://alonzoleeeooo.github.io/StableV2V/) f
 
 <!-- omit in toc -->
 # Citation
-We will update the BibTeX reference as soon as our arXiv paper is announced.
+If you find this work helpful to your research, or use our testing benchmark `DAVIS-Edit`, please cite our paper:
+```
+@misc{liu-etal-2024-stablev2v,
+      title={StableV2V: Stablizing Shape Consistency in Video-to-Video Editing}, 
+      author={Chang Liu and Rui Li and Kaidong Zhang and Yunwei Lan and Dong Liu},
+      year={2024},
+      eprint={2411.11045},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+}
+```
 
 
 
