@@ -4,7 +4,7 @@
 
 Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 
-[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Huggingface`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`DAVIS-Edit`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
+[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Huggingface`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`DAVIS-Edit`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit) / [[`wisemodel`]](https://wisemodel.cn/models/Alonzo/StableV2V)
 </div>
 
 <!-- omit in toc -->
@@ -22,12 +22,14 @@ Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 - [<u>9. Citation</u>](#citation)
 - [<u>10. Results</u>](#results)
 - [<u>11. Star History</u>](#star-history)
+- [<u>12. Acknowledgements</u>](#acknowledgements)
 
 If you have any questions about this work, please feel free to [start a new issue](https://github.com/AlonzoLeeeooo/StableV2V/issues/new) or [propose a PR](https://github.com/AlonzoLeeeooo/StableV2V/pulls).
 
 
 <!-- omit in toc -->
 # News
+- [Nov. 21th] We uploaded our [model weights](https://wisemodel.cn/models/Alonzo/StableV2V) and the proposed testing benchmark [`DAVIS-Edit`](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) to [wisemodel.cn]([wisemodel.cn](https://wisemodel.cn/home)).
 - [Nov. 19th] We have updated `DAVIS-Edit` to [our HuggingFace dataset repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit), and uploaded all the required model weights of `StableV2V` to [our HuggingFace model repo](https://huggingface.co/AlonzoLeeeooo/StableV2V).
 - [Nov. 19th] [Our arXiv paper](https://arxiv.org/abs/2411.11045) is currently released.
 - [Nov. 18th] We updated the codebase of StableV2V.
@@ -443,5 +445,14 @@ If you find this work helpful to your research, or use our testing benchmark `DA
         <img width="550" src="https://api.star-history.com/svg?repos=alonzoleeeooo/StableV2V&type=Date" alt="Star History Chart">
     </a>
 </p>
+
+[<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
+
+
+<!-- omit in toc -->
+# Acknowledgements
+
+This repo is heavily modifed based on [Diffusers](https://github.com/huggingface/diffusers), [Ctrl-Adapter](https://github.com/HL-hanlin/Ctrl-Adapter), [AnyDoor](https://github.com/ali-vilab/AnyDoor), and [RAFT](https://github.com/princeton-vl/RAFT). We sincerely thanks the authors for their fantasitic implementations.
+
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
