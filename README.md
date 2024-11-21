@@ -85,10 +85,15 @@ StableV2V
 <!-- omit in toc -->
 ## 1. Install the Dependencies
 We offer an one-click command line to install all the dependencies that the code requires.
-Specifically, you can execute:
+Specifically, you can execute the following lines to install the dependencies with `pip`:
 ```bash
 pip install -r requirements.txt
 ```
+You can also install the dependencies with `conda`, following the command line below:
+```bash
+conda env create -f environment.yaml
+```
+
 
 <!-- omit in toc -->
 ## 2. Pre-trained Model Weights
