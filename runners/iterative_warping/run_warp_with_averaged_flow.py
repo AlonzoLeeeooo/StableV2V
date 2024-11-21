@@ -77,6 +77,7 @@ def iterative_warp_with_averaged_flow(args):
     dilated_mask[dilated_mask > 0.5] = 1
     dilated_mask[dilated_mask <= 0.5] = 0
 
+
     # Load object masks
     object_mask_paths = sorted(os.listdir(args.object_mask))
     object_masks = []
@@ -90,6 +91,12 @@ def iterative_warp_with_averaged_flow(args):
 
     editing_masks = [dilated_mask]
     current_masks = [init_mask]
+
+    first_dilated_editing_mask = (dilated_mask.squeeze().numpy() * 255).astype(np.uint8)
+    cv2.imwrite(os.path.join(args.outdir, 'iterative_warping', 'warped_editing_masks', f'00000.png'), first_dilated_editing_mask)
+    first_editing_mask = (init_mask.squeeze().numpy() * 255).astype(np.uint8)
+    cv2.imwrite(os.path.join(args.outdir, 'iterative_warping', 'warped_masks', f'00000.png'), first_editing_mask)
+
 
     os.makedirs(os.path.join(args.outdir, 'iterative_warping', 'warped_editing_masks'), exist_ok=True)
     os.makedirs(os.path.join(args.outdir, 'iterative_warping', 'warped_masks'), exist_ok=True)
@@ -127,8 +134,8 @@ def iterative_warp_with_averaged_flow(args):
         current_editing_mask = (current_editing_mask.squeeze().numpy() * 255).astype(np.uint8)
       
         # Save warped mask
-        cv2.imwrite(os.path.join(args.outdir, 'iterative_warping', 'warped_editing_masks', f'{i:05d}.png'), current_editing_mask)
-        cv2.imwrite(os.path.join(args.outdir, 'iterative_warping', 'warped_masks', f'{i:05d}.png'), current_mask)
+        cv2.imwrite(os.path.join(args.outdir, 'iterative_warping', 'warped_editing_masks', f'{(i+1):05d}.png'), current_editing_mask)
+        cv2.imwrite(os.path.join(args.outdir, 'iterative_warping', 'warped_masks', f'{(i+1):05d}.png'), current_mask)
 
     # Save results as GIF
     pil_editing_masks = [Image.fromarray((mask.squeeze().cpu().numpy() * 255).astype(np.uint8)) for mask in editing_masks]

@@ -4,7 +4,7 @@ from PIL import Image
 from tqdm import tqdm
 from models.midas.midas import DepthMidas
 
-device = 'cuda' if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else 'cpu'
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def midas_depth_estimation_runner(args):
     depth_dir = os.path.join(args.outdir, 'iterative_warping', 'depth_maps')
