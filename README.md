@@ -93,6 +93,7 @@ You can also install the dependencies with `conda`, following the command line b
 ```bash
 conda env create -f environment.yaml
 ```
+Then, you are ready to go with `conda activate stablev2v`.
 
 
 <!-- omit in toc -->
