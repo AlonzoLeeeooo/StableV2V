@@ -11,25 +11,27 @@ Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 # Table of Contents
 - [<u>1. News</u>](#news)
 - [<u>2. To-Do Lists</u>](#to-do-lists)
-- [<u>3. Overview of StableV2V</u>](#overview-of-stablev2v)
+- [<u>3. Overview of `StableV2V`</u>](#overview-of-stablev2v)
 - [<u>4. Code Structure</u>](#code-structure)
 - [<u>5. Prerequisites</u>](#prerequisites)
-- [<u>6. Inference of StableV2V</u>](#inference-of-stablev2v)
+- [<u>6. Inference of `StableV2V` (Command Lines)</u>](#inference-of-stablev2v-command-lines)
   - [<u>6.1. Sketch-based Editing with `StableV2V`</u>](#performing-sketch-based-editing-with-stablev2v)
   - [<u>6.2. Video Inpainting with `StableV2V`</u>](#performing-video-inpainting-with-stablev2v)
-- [<u>7. Details of `DAVIS-Edit`</u>](#details-of-davis-edit)
-- [<u>8. Training the Shape-guided Depth Refinement Network</u>](#training-of-the-shape-guided-depth-refinement-network)
-- [<u>9. Citation</u>](#citation)
-- [<u>10. Results</u>](#results)
-- [<u>11. Star History</u>](#star-history)
-- [<u>12. Acknowledgements</u>](#acknowledgements)
+- [<u>7. Inference of `StableV2V` (Gradio Demo)</u>](#inference-of-stablev2v-gradio-demo)
+- [<u>8. Details of `DAVIS-Edit`</u>](#details-of-davis-edit)
+- [<u>9. Training the Shape-guided Depth Refinement Network</u>](#training-of-the-shape-guided-depth-refinement-network)
+- [<u>10. Citation</u>](#citation)
+- [<u>11. Results</u>](#results)
+- [<u>12. Star History</u>](#star-history)
+- [<u>13. Acknowledgements</u>](#acknowledgements)
 
 If you have any questions about this work, please feel free to [start a new issue](https://github.com/AlonzoLeeeooo/StableV2V/issues/new) or [propose a PR](https://github.com/AlonzoLeeeooo/StableV2V/pulls).
 
 
 <!-- omit in toc -->
 # News
-- [Nov. 21th] We uploaded our [model weights](https://wisemodel.cn/models/Alonzo/StableV2V) and the proposed testing benchmark [`DAVIS-Edit`](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) to [wisemodel.cn]([wisemodel.cn](https://wisemodel.cn/home)).
+- [Nov 21th] We update a Gradio demo for interactive use of `StableV2V`, with detailed illustrations presented in [this section](#inference-of-stablev2v-gradio-demo).
+- [Nov. 20th] We uploaded our [model weights](https://wisemodel.cn/models/Alonzo/StableV2V) and the proposed testing benchmark [`DAVIS-Edit`](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) to [wisemodel.cn]([wisemodel.cn](https://wisemodel.cn/home)).
 - [Nov. 19th] We have updated `DAVIS-Edit` to [our HuggingFace dataset repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit), and uploaded all the required model weights of `StableV2V` to [our HuggingFace model repo](https://huggingface.co/AlonzoLeeeooo/StableV2V).
 - [Nov. 19th] [Our arXiv paper](https://arxiv.org/abs/2411.11045) is currently released.
 - [Nov. 18th] We updated the codebase of StableV2V.
@@ -40,7 +42,7 @@ If you have any questions about this work, please feel free to [start a new issu
 - [x] Update the codebase of `StableV2V`
 - [x] Upload the curated testing benchmark `DAVIS-Edit` to our [HuggingFace repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit)
 - [x] Upload all required model weights of `StableV2V` to our [HuggingFace repo](https://huggingface.co/AlonzoLeeeooo/StableV2V)
-- [ ] Update a Gradio demo
+- [x] Update a Gradio demo
 - Regular Maintainence
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
@@ -48,9 +50,9 @@ If you have any questions about this work, please feel free to [start a new issu
 
 
 <!-- omit in toc -->
-# Overview of StableV2V
-StableV2V presents a novel paradigm to perform video editing in a shape-consistent manner, especially handling the editing scenarios when user prompts cause significant shape changes to the edited contents.
-Besides, StableV2V shows superior flexibility in handling a wide series of down-stream applications, considering various user prompts from different modalities.
+# Overview of `StableV2V`
+`StableV2V` presents a novel paradigm to perform video editing in a shape-consistent manner, especially handling the editing scenarios when user prompts cause significant shape changes to the edited contents.
+Besides, `StableV2V` shows superior flexibility in handling a wide series of down-stream applications, considering various user prompts from different modalities.
 
 <div align="center">
   <video width="500" src="assets/github-teasor-comparison.mp4" autoplay loop muted></video>
@@ -141,7 +143,7 @@ cond_stage_config:
 
 
 <!-- omit in toc -->
-# Inference of StableV2V
+# Inference of `StableV2V` (Command Lines)
 
 You may refer to the following command line to run `StableV2V`:
 ```bash
@@ -282,6 +284,22 @@ By configuring the `--edited-first-frame`, the codebase will automatically skip 
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
+
+<!-- omit in toc -->
+# Inference of `StableV2V` (Gradio Demo)
+We also offer a gradio demo to try `StableV2V` through interactive UI. Before you go, we recommend you to follow the instructions [in this section](#prerequisites) to prepare all the required model weights locally (in the `./checkpoints` folder). Then, feel free to test it out by simply running:
+```bash
+python app.py
+```
+
+In the following figure, we illustrate the functions of different modules in our Gradio demo:
+<div align="center">
+  <img width="800" src="assets/gradio-demo.jpg"/>
+</div>
+
+Please do not hesitate to [start a new issue](https://github.com/AlonzoLeeeooo/StableV2V/issues/new) or [propose a PR](https://github.com/AlonzoLeeeooo/StableV2V/pulls) if have any further questions about the demo.
+
+[<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 <!-- omit in toc -->
 # Details of `DAVIS-Edit`
