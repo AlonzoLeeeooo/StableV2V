@@ -90,6 +90,7 @@ def depth_completion_net_inference_runner(args):
     # 3. Forward
     with torch.no_grad():
         pred_depth_maps, _ = completion_net(depth_maps_tensor.to(device), mask_tensor.to(device), shape_tensor.to(device))
+    pred_depth_maps = pred_depth_maps.to(device)
     pred_depth_maps = (1 - mask_tensor) * depth_maps_tensor + mask_tensor * pred_depth_maps
     
     # 4. Visualization

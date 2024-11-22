@@ -97,9 +97,6 @@ def i2vgenxl_ctrl_adapter_inference_runner(args):
         **pipeline_args).to(device, dtype=data_type)
     pipe.unet = I2VGenXLUNet.from_pretrained(args.i2vgenxl_checkpoint_path, subfolder="unet").to(device, dtype=data_type)
     
-    # Turn on `xformers`
-    if args.xformers:
-        pipe.enable_xformers_memory_efficient_attention()
 
     # Initialize random seed
     generator = torch.Generator().manual_seed(args.seed) if args.seed else None
