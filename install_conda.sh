@@ -1,0 +1,2 @@
+conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
+conda install opencv-python pillow gradio transformers einops scipy matplotlib omegaconf albumentations accelerate huggingface-hub==0.23.5 diffusers==0.27.2 timm==0.6.7

@@ -9,9 +9,9 @@ Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 
 <!-- omit in toc -->
 # Table of Contents
-- [<u>1. News</u>](#news)
-- [<u>2. To-Do Lists</u>](#to-do-lists)
-- [<u>3. Overview of `StableV2V`</u>](#overview-of-stablev2v)
+- [<u>1. Overview of `StableV2V`</u>](#overview-of-stablev2v)
+- [<u>2. News</u>](#news)
+- [<u>3. To-Do Lists</u>](#to-do-lists)
 - [<u>4. Code Structure</u>](#code-structure)
 - [<u>5. Prerequisites</u>](#prerequisites)
 - [<u>6. Inference of `StableV2V` (Command Lines)</u>](#inference-of-stablev2v-command-lines)
@@ -26,6 +26,21 @@ Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 - [<u>13. Acknowledgements</u>](#acknowledgements)
 
 If you have any questions about this work, please feel free to [start a new issue](https://github.com/AlonzoLeeeooo/StableV2V/issues/new) or [propose a PR](https://github.com/AlonzoLeeeooo/StableV2V/pulls).
+
+
+<!-- omit in toc -->
+# Overview of `StableV2V`
+`StableV2V` presents a novel paradigm to perform video editing in a shape-consistent manner, especially handling the editing scenarios when user prompts cause significant shape changes to the edited contents.
+Besides, `StableV2V` shows superior flexibility in handling a wide series of down-stream applications, considering various user prompts from different modalities.
+
+<div align="center">
+  <video width="500" src="assets/github-teasor-comparison.mp4" autoplay loop muted></video>
+  <video width="500" src="assets/github-teasor-applications.mp4" autoplay loop muted></video>
+</div>
+
+
+
+[<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 
 <!-- omit in toc -->
@@ -47,21 +62,6 @@ If you have any questions about this work, please feel free to [start a new issu
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
-
-
-<!-- omit in toc -->
-# Overview of `StableV2V`
-`StableV2V` presents a novel paradigm to perform video editing in a shape-consistent manner, especially handling the editing scenarios when user prompts cause significant shape changes to the edited contents.
-Besides, `StableV2V` shows superior flexibility in handling a wide series of down-stream applications, considering various user prompts from different modalities.
-
-<div align="center">
-  <video width="500" src="assets/github-teasor-comparison.mp4" autoplay loop muted></video>
-  <video width="500" src="assets/github-teasor-applications.mp4" autoplay loop muted></video>
-</div>
-
-
-
-[<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
 
 
 <!-- omit in toc -->
@@ -87,13 +87,17 @@ StableV2V
 <!-- omit in toc -->
 ## 1. Install the Dependencies
 We offer an one-click command line to install all the dependencies that the code requires.
-Specifically, you can execute the following lines to install the dependencies with `pip`:
+First, create the virtual environment with `conda`:
 ```bash
-pip install -r requirements.txt
+conda create -n stablev2v python=3.10
+```
+Then, you can execute the following lines to install the dependencies with `pip`:
+```bash
+bash install_pip.sh
 ```
 You can also install the dependencies with `conda`, following the command line below:
 ```bash
-conda env create -f environment.yaml
+bash install_conda.sh
 ```
 Then, you are ready to go with `conda activate stablev2v`.
 
