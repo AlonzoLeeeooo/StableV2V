@@ -480,7 +480,7 @@ If you find this work helpful to your research, or use our testing benchmark `DA
 <!-- omit in toc -->
 # Acknowledgements
 
-This repo is heavily modifed based on [Diffusers](https://github.com/huggingface/diffusers), [Ctrl-Adapter](https://github.com/HL-hanlin/Ctrl-Adapter), [AnyDoor](https://github.com/ali-vilab/AnyDoor), and [RAFT](https://github.com/princeton-vl/RAFT). We sincerely thanks the authors for their fantasitic implementations.
+This repo is heavily modified based on [Diffusers](https://github.com/huggingface/diffusers), [Ctrl-Adapter](https://github.com/HL-hanlin/Ctrl-Adapter), [AnyDoor](https://github.com/ali-vilab/AnyDoor), and [RAFT](https://github.com/princeton-vl/RAFT). We sincerely thanks the authors for their fantasitic implementations.
 
 
 [<u><small><🎯Back to Table of Contents></small></u>](#table-of-contents)
