@@ -4,7 +4,7 @@
 
 Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 
-[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Huggingface`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`DAVIS-Edit`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit) / [[`wisemodel`]](https://wisemodel.cn/models/Alonzo/StableV2V)
+[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Models (Huggingface)`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`DAVIS-Edit (HuggingFace)`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit) / [[`Models (wisemodel)`]](https://wisemodel.cn/models/Alonzo/StableV2V) / [[`DAVIS-Edit (wisemodel)`]](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) / [[`Models (ModelScope)`]](https://modelscope.cn/models/AlonzoLeeeoooo/StableV2V) / [[`DAVIS-Edit (ModelScope)`]](https://modelscope.cn/datasets/AlonzoLeeeoooo/DAVIS-Edit)
 </div>
 
 <!-- omit in toc -->
@@ -45,7 +45,8 @@ Besides, `StableV2V` shows superior flexibility in handling a wide series of dow
 
 <!-- omit in toc -->
 # News
-- [Nov 21th] We update a Gradio demo for interactive use of `StableV2V`, with detailed illustrations presented in [this section](#inference-of-stablev2v-gradio-demo).
+- [Nov. 27th] We uploaded our [model weights](https://modelscope.cn/models/AlonzoLeeeoooo/StableV2V) and the proposed testing benchmark [`DAVIS-Edit`](https://modelscope.cn/datasets/AlonzoLeeeoooo/DAVIS-Edit) to ModelScope.
+- [Nov. 21th] We updated a Gradio demo for interactive use of `StableV2V`, with detailed illustrations presented in [this section](#inference-of-stablev2v-gradio-demo).
 - [Nov. 20th] We uploaded our [model weights](https://wisemodel.cn/models/Alonzo/StableV2V) and the proposed testing benchmark [`DAVIS-Edit`](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) to [wisemodel.cn]([wisemodel.cn](https://wisemodel.cn/home)).
 - [Nov. 19th] We have updated `DAVIS-Edit` to [our HuggingFace dataset repo](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit), and uploaded all the required model weights of `StableV2V` to [our HuggingFace model repo](https://huggingface.co/AlonzoLeeeooo/StableV2V).
 - [Nov. 19th] [Our arXiv paper](https://arxiv.org/abs/2411.11045) is currently released.
