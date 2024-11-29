@@ -18,7 +18,7 @@ from runners.iterative_warping_runner import iterative_warping_runner
 from runners.stable_diffusion_inpaint_inference_runner import stable_diffusion_inpaint_inference_runner
 from runners.anydoor_inference_runner import anydoor_inference_runner
 
-os.environ['PYTORCH_ENABLE_MPS_FALLBAC'] = '1'
+os.environ['PYTORCH_ENABLE_MPS_FALLBACK'] = '1'
 
 # Initialize default arguments
 args = parse_args()
