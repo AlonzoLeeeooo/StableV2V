@@ -39,6 +39,8 @@ def paint_by_example_inference_runner(args):
         torch_dtype = torch.float32
     elif args.mixed_precision == "fp16":
         torch_dtype = torch.float16
+    elif args.mixed_precision == "bf16":
+        torch_dtype = torch.bfloat16
     pipe = PaintByExamplePipeline.from_pretrained(
         model_path,
         torch_dtype=torch_dtype,

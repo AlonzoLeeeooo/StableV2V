@@ -103,15 +103,14 @@ def run_stablev2v(
             frame_path = os.path.join(args.outdir, 'frames', filename)
             current_frame.save(frame_path)
         args.source_video_frames = os.path.join(args.outdir, 'frames')
-        if image_editor_type in ['paint-by-example', 'anydoor']:
+        if image_editor_type in ['paint-by-example', 'anydoor'] and edited_first_frame is None:
             external_guidance_image.save(os.path.join(args.outdir, 'reference_image.png'))
             args.external_guidance = os.path.join(args.outdir, 'reference_image.png')
-        else:
+        elif image_editor_type == 'instructpix2pix' and edited_first_frame is None:
             args.external_guidance = external_guidance_text
         if edited_first_frame:
             edited_first_frame.save(os.path.join(args.outdir, 'edited_first_frame.png'))
-            args.edited_first_frame = os.path.join(args.outdir, 'edited_first_frame.png')
-            
+            args.edited_first_frame = os.path.join(args.outdir, 'edited_first_frame.png') 
             
         # Run inference pipeline
         u2net_saliency_detection_runner(args)
