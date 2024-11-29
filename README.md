@@ -34,8 +34,8 @@ If you have any questions about this work, please feel free to [start a new issu
 Besides, `StableV2V` shows superior flexibility in handling a wide series of down-stream applications, considering various user prompts from different modalities.
 
 <div align="center">
-  <video width="500" src="assets/github-teasor-comparison.mp4" autoplay loop muted></video>
-  <video width="500" src="assets/github-teasor-applications.mp4" autoplay loop muted></video>
+  <video width="500" src="https://alonzoleeeooo.github.io/assets/github-teasor-comparison.mp4" autoplay loop muted></video>
+  <video width="500" src="https://alonzoleeeooo.github.io/assets/github-teasor-applications.mp4" autoplay loop muted></video>
 </div>
 
 
@@ -206,8 +206,8 @@ To obtain the human-drawn sketches, you need to manually draw them on external d
 Particularly, we obtain the hand-drawn sketches on the iPad application `Sketchbook`. An example hand-drawn sketch might look like this:
 
 <div align="center">
-  <img src="assets/bear-input-frame.png" width="400"/>
-  <img src="assets/bear-elephant-sketch.png" width="400"/>
+  <img src="https://alonzoleeeooo.github.io/assets/bear-input-frame.png" width="400"/>
+  <img src="https://alonzoleeeooo.github.io/assets/bear-elephant-sketch.png" width="400"/>
 </div>
 
 ### 2. Use `ControlNet (scribble)` to Generate the First Edited Frame
@@ -219,7 +219,7 @@ python scripts/inference_controlnet_inpaint.py --controlnet-checkpoint-path llly
 ```
 The result might seem like:
 <div align="center">
-  <img src="assets/bear-elephant-edited-first-frame.png" width="400"/>
+  <img src="https://alonzoleeeooo.github.io/assets/bear-elephant-edited-first-frame.png" width="400"/>
 </div>
 
 
@@ -231,8 +231,8 @@ python inference.py --raft-checkpoint-path checkpoints/raft-things.pth --midas-c
 By configuring the `--edited-first-frame`, the codebase will automatically skip the first-frame editing process, where we visualize the source video and the edited video below:
 
 <div align="center">
-  <img width="400" src="assets/bear-elephant-source-video.gif"/>
-  <img width="400" src="assets/bear-elephant-edited-video.gif"/>
+  <img width="400" src="https://alonzoleeeooo.github.io/assets/bear-elephant-source-video.gif"/>
+  <img width="400" src="https://alonzoleeeooo.github.io/assets/bear-elephant-edited-video.gif"/>
 </div>
 
 </details>
@@ -268,8 +268,8 @@ The original and inpainted first frames might look like:
 
 
 <div align="center">
-  <img src="assets/car-turn-frame.jpg" width="400"/>
-  <img src="assets/car-turn-inpainted.png" width="400"/>
+  <img src="https://alonzoleeeooo.github.io/assets/car-turn-frame.jpg" width="400"/>
+  <img src="https://alonzoleeeooo.github.io/assets/car-turn-inpainted.png" width="400"/>
 </div>
 
 
@@ -281,8 +281,8 @@ python inference.py --raft-checkpoint-path checkpoints/raft-things.pth --midas-c
 By configuring the `--edited-first-frame`, the codebase will automatically skip the first-frame editing process, where we visualize the source video and the edited video below:
 
 <div align="center">
-  <img width="400" src="assets/car-turn-source-video.gif"/>
-  <img width="400" src="assets/car-turn-edited-video.gif"/>
+  <img width="400" src="https://alonzoleeeooo.github.io/assets/car-turn-source-video.gif"/>
+  <img width="400" src="https://alonzoleeeooo.github.io/assets/car-turn-edited-video.gif"/>
 </div>
 
 </details>
@@ -299,7 +299,7 @@ python app.py
 
 In the following figure, we illustrate the functions of different modules in our Gradio demo:
 <div align="center">
-  <img width="800" src="assets/gradio-demo.jpg"/>
+  <img width="800" src="https://alonzoleeeooo.github.io/assets/gradio-demo.jpg"/>
 </div>
 
 Please do not hesitate to [start a new issue](https://github.com/AlonzoLeeeooo/StableV2V/issues/new) or [propose a PR](https://github.com/AlonzoLeeeooo/StableV2V/pulls) if have any further questions about the demo.
