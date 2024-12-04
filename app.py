@@ -25,7 +25,7 @@ args = parse_args()
 
 # TODO: Model paths configuration
 args.paint_by_example_checkpoint_path = "checkpoints/paint-by-example"
-args.instructpix2pix_checkpoint_path = "checkpoints/instructpix2pix"
+args.instructpix2pix_checkpoint_path = "checkpoints/instruct-pix2pix"
 args.stable_diffusion_inpaint_checkpoint_path = "checkpoints/stable-diffusion-inpaint"
 args.anydoor_checkpoint_path = "checkpoints/anydoor"
 args.raft_checkpoint_path = "checkpoints/raft/raft-things.pth"
