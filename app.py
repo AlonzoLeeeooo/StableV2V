@@ -264,7 +264,7 @@ with gr.Blocks() as demo:
                     minimum=1, maximum=49, value=11, step=2,
                     label="Kernel Size"
                 )
-                dilation_iteration = gr.Slider(
+                dilation_iterations = gr.Slider(
                     minimum=1, maximum=10, value=3, step=1,
                     label="Dilation Iterations"
                 )
@@ -294,7 +294,7 @@ with gr.Blocks() as demo:
             width,
             edited_first_frame,
             kernel_size,
-            dilation_iteration,
+            dilation_iterations,
             mixed_precision,
             seed,
         ],
