@@ -16,7 +16,7 @@ from runners.iterative_warping.raft.core.utils.utils import InputPadder
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 def load_image(imfile):
-    img = np.array(Image.open(imfile)).astype(np.uint8)
+    img = np.array(Image.open(imfile).convert('RGB')).astype(np.uint8)
     img = cv2.resize(img, (512, 512))
     img = torch.from_numpy(img).permute(2, 0, 1).float()
     return img[None].to(device)
