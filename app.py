@@ -177,7 +177,7 @@ def run_stablev2v(
             img_list = sorted(os.listdir(file_path))
             image = cv2.imread(os.path.join(file_path, img_list[1]))
             height, width, _ = image.shape
-            fourcc = cv2.VideoWriter_fourcc('M', 'P', '4', 'V')
+            fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
             videowriter = cv2.VideoWriter(output, fourcc, fps, (width, height))
             for img in img_list:
                 path = os.path.join(file_path, img)
@@ -188,7 +188,7 @@ def run_stablev2v(
         
         # Return the generated gif path
         result_path = os.path.join(args.outdir, 'generator_outputs', 'output_frames')
-        image_to_video(result_path, os.path.join(args.outdir, 'generator_outputs', 'output_video.mp4'))
+        image_to_video(result_path, os.path.join(args.outdir, 'generator_outputs', 'output_video.mp4'), args.output_fps)
         return os.path.join(args.outdir, 'generator_outputs', 'output_video.mp4')
 
 

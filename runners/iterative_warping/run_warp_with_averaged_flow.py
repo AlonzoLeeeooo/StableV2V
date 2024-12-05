@@ -51,7 +51,7 @@ def iterative_warp_with_averaged_flow(args):
     # Load optical flows
     optical_flow_paths = sorted(os.listdir(args.optical_flow))
     optical_flows = []
-    for optical_flow_path in optical_flow_paths[:16]:
+    for optical_flow_path in optical_flow_paths[:args.n_sample_frames]:
         optical_flow = np.load(os.path.join(args.optical_flow, optical_flow_path))
         optical_flow = torch.from_numpy(optical_flow)
         optical_flows.append(optical_flow)
@@ -66,11 +66,11 @@ def iterative_warp_with_averaged_flow(args):
     init_mask[init_mask <= 0.5] = 0
 
     # Create dilated mask
-    kernel = np.ones((11, 11), np.uint8)  # You can adjust the kernel size as needed
-    dilated_mask = cv2.dilate(init_mask.squeeze().cpu().numpy(), kernel, iterations=9)
+    kernel = np.ones((args.kernel_size, args.kernel_size), np.uint8)  # You can adjust the kernel size as needed
+    dilated_mask = cv2.dilate(init_mask.squeeze().cpu().numpy(), kernel, iterations=args.dilation_iteration)
     
     # Erode the dilated mask
-    erode_kernel = np.ones((11, 11), np.uint8)  # Adjust kernel size as needed
+    erode_kernel = np.ones((args.kernel_size, args.kernel_size), np.uint8)  # Adjust kernel size as needed
     dilated_mask = cv2.erode(dilated_mask, erode_kernel, iterations=6)
 
     dilated_mask = torch.from_numpy(dilated_mask).unsqueeze(0).unsqueeze(0)
