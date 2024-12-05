@@ -213,8 +213,8 @@ def anydoor_inference_runner(args):
         ref_mask = (cv2.imread(os.path.join(args.reference_masks, sorted(os.listdir(args.reference_masks))[0])) > 128).astype(np.uint8)[:, :, 0]
         ref_mask = cv2.resize(ref_mask, (args.width, args.height))
     else:
-        from runners.u2net_saliency_detection_runner import u2net_saliency_detection_for_singe_image
-        u2net_saliency_detection_for_singe_image(args, edited_first_frame_input_dir=args.reference_image)
+        from runners.u2net_saliency_detection_runner import u2net_saliency_detection_for_single_image
+        u2net_saliency_detection_for_single_image(args, edited_first_frame_input_dir=args.reference_image)
         ref_mask = (cv2.imread(os.path.join(args.outdir, 'reference_masks', args.prompt.lower().replace(' ', '_') + '.png')) > 128).astype(np.uint8)[:, :, 0]
         ref_mask = cv2.resize(ref_mask, (args.width, args.height))
     

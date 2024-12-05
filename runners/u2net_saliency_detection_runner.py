@@ -92,7 +92,7 @@ def u2net_saliency_detection_runner(args, edited_first_frame_input_dir=None):
         del d1,d2,d3,d4,d5,d6,d7
 
 
-def u2net_saliency_detection_for_singe_image(args, edited_first_frame_input_dir=None):
+def u2net_saliency_detection_for_single_image(args, edited_first_frame_input_dir=None):
 
     # 1. Define basic configurations
     input_dir = edited_first_frame_input_dir
