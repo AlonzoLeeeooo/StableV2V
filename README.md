@@ -2,9 +2,11 @@
 
 # StableV2V: Stablizing Shape Consistency in Video-to-Video Editing
 
+TCSVT 2025
+
 Chang Liu, Rui Li, Kaidong Zhang, Yunwei Lan, Dong Liu
 
-[[`Paper`]](https://arxiv.org/abs/2411.11045) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Models (Huggingface)`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`DAVIS-Edit (HuggingFace)`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit) / [[`Models (wisemodel)`]](https://wisemodel.cn/models/Alonzo/StableV2V) / [[`DAVIS-Edit (wisemodel)`]](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) / [[`Models (ModelScope)`]](https://modelscope.cn/models/AlonzoLeeeoooo/StableV2V) / [[`DAVIS-Edit (ModelScope)`]](https://modelscope.cn/datasets/AlonzoLeeeoooo/DAVIS-Edit)
+[[`Paper (arXiv)`]](https://arxiv.org/abs/2411.11045) / [`Paper (TCSVT)`](https://ieeexplore.ieee.org/document/11272911/) / [[`Project`]](https://alonzoleeeooo.github.io/StableV2V/) / [[`Models (Huggingface)`]](https://huggingface.co/AlonzoLeeeooo/StableV2V) / [[`DAVIS-Edit (HuggingFace)`]](https://huggingface.co/datasets/AlonzoLeeeooo/DAVIS-Edit) / [[`Models (wisemodel)`]](https://wisemodel.cn/models/Alonzo/StableV2V) / [[`DAVIS-Edit (wisemodel)`]](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) / [[`Models (ModelScope)`]](https://modelscope.cn/models/AlonzoLeeeoooo/StableV2V) / [[`DAVIS-Edit (ModelScope)`]](https://modelscope.cn/datasets/AlonzoLeeeoooo/DAVIS-Edit)
 </div>
 
 <!-- omit in toc -->
@@ -45,6 +47,7 @@ Besides, `StableV2V` shows superior flexibility in handling a wide series of dow
 
 <!-- omit in toc -->
 # News
+- [Dec. 11th, 2025] Our paper is accepted at [TCSVT 2025](https://ieeexplore.ieee.org/document/11272911/)!
 - [Nov. 27th] We uploaded our [model weights](https://modelscope.cn/models/AlonzoLeeeoooo/StableV2V) and the proposed testing benchmark [`DAVIS-Edit`](https://modelscope.cn/datasets/AlonzoLeeeoooo/DAVIS-Edit) to ModelScope.
 - [Nov. 21th] We updated a Gradio demo for interactive use of `StableV2V`, with detailed illustrations presented in [this section](#inference-of-stablev2v-gradio-demo).
 - [Nov. 20th] We uploaded our [model weights](https://wisemodel.cn/models/Alonzo/StableV2V) and the proposed testing benchmark [`DAVIS-Edit`](https://wisemodel.cn/datasets/Alonzo/DAVIS-Edit) to [wisemodel.cn]([wisemodel.cn](https://wisemodel.cn/home)).
